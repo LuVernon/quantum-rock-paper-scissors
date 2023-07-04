@@ -72,6 +72,10 @@
                         console.log(`You've lost round ${i}!`);
                         return "You Lose!";
                     }   
+                    else if (playerSelection != "rock" || playerSelection != "paper" || playerSelection != "paper") {
+                        let playerSelection = prompt("Sorry, we didn't get that. Please type Rock, Paper, or Scissors").toLowerCase().trim();
+                        playRound(computerSelection, playerSelection);
+                    }
             }
             let computerSelection = getComputerChoice();
             let playerSelection = prompt("Please Choose and then Type Rock, Paper or Scissors").toLowerCase().trim();
