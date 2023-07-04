@@ -32,33 +32,33 @@
         function playRound (computerSelection, playerSelection) {
             
             if (playerSelection == "rock" && computerSelection == "rock") {
-                console.log("You Tie!");
+                return "You Tie!";
             }
             else if (playerSelection == "rock" && computerSelection == "scissors") {
-                console.log("You Win!");
+                return "You Win!";
             }
             else if (playerSelection == "rock" && computerSelection == "paper") {
-                console.log("You Lose!");
+                return "You Lose!";
             }
             
             else if (playerSelection == "paper" && computerSelection == "paper") {
-                console.log("You Tie!");
+                return "You Tie!";
             }
             else if (playerSelection == "paper" && computerSelection == "rock") {
-                console.log("You Win!");
+                return "You Win!";
             }
             else if (playerSelection == "paper" && computerSelection == "scissors") {
-                console.log("You Lose!");
+                return "You Lose!";
             }
 
             else if (playerSelection == "scissors" && computerSelection == "scissors") {
-                console.log("You Tie!");
+                return "You Tie!";
             }
             else if (playerSelection == "scissors" && computerSelection == "paper") {
-                console.log("You Win!");
+                return "You Win!";
             }
             else if (playerSelection == "scissors" && computerSelection == "rock") {
-                console.log("You Lose!");
+                return "You Lose!";
             }
             
         }
