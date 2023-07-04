@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quantum Rock, Paper, Scissors!</title>
+</head>
+<body>
+    <script>
+        /* Superposition plays fair, with the opponent generating a random choice out of the three. 
+        Collapsing the wave-function when you initiate your choice. This is the default mode until 
+        the player generates enough entanglement points. */
+
+        /* Entanglement points are spent on the entanglement ability, this ability will enable you 
+        to split the opponent's wave-function and entangle their response with yours, thus showing 
+        you their choice before you make one. */
+
+        // Generate the opponent's choice. 
+        function getComputerChoice () {
+            var randChoice = Math.floor(Math.random() * 3) + 1;
+
+            switch (randChoice) {
+                case 1: 
+                    return "rock";
+                case 2: 
+                    return "paper";
+                case 3:
+                    return "scissors";
+            }
+        }
+    </script>
+</body>
+</html>
