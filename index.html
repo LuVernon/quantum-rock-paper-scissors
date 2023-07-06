@@ -4,8 +4,71 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quantum Rock, Paper, Scissors!</title>
+    <style>
+        html {
+            background-color: rgb(247, 150, 86);
+        }
+
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        button {
+            color: rgb(159, 100, 22);
+            width: 100px;
+            height: 50px;
+            font-size: 20px;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; 
+            font-weight: bold;
+            border-radius: 25px;
+            background-color: blanchedalmond;
+            border: solid white 1px;  
+        }
+
+        #submit {
+            pointer-events: none;
+        }
+
+        #results {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            font-size: 25px;
+            background-color: rgb(255, 199, 103);
+            width: 500px;
+            height: 100px;
+            border-radius: 25px;
+            margin-bottom: 25px;
+        }
+
+        .clicked {
+            background-color: rgb(255, 197, 121);
+        }
+
+        #content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
 </head>
 <body>
+
+<div id="content">
+    <div id="results"></div>
+    <div id="buttonChoices">
+        <button id="submit">Submit</button>
+        <button id="rock">Rock</button>
+        <button id="paper">Paper</button>
+        <button id="scissors">Scissors</button>
+    </div>
+</div>
+    
     <script>
         /* Superposition plays fair, with the opponent generating a random choice out of the three. 
         Collapsing the wave-function when you initiate your choice. This is the default mode until 
@@ -15,75 +78,145 @@
         to split the opponent's wave-function and entangle their response with yours, thus showing 
         you their choice before you make one. */
 
-        // Generate the opponent's choice. 
-        function getComputerChoice () {
-            var randChoice = Math.floor(Math.random() * 3) + 1;
+let roundsPlayed = 0;
+let scorePlayer = 0;
+let scoreComputer = 0;
+let playerSelection = "";
+let computerSelection = "";
 
-            switch (randChoice) {
-                case 1: 
-                    return "rock";
-                case 2: 
-                    return "paper";
-                case 3:
-                    return "scissors";
-            }
-        }
+const rockChoice = document.getElementById("rock");
+const paperChoice = document.getElementById("paper");
+const scissorsChoice = document.getElementById("scissors");
+const choices = [rockChoice, paperChoice, scissorsChoice];
+
+const confirmChoice = document.getElementById("submit");
+
+const resultBox = document.getElementById("results");
+
+let announceResults = ``;
+
+// Generate the opponent's choice. 
+function getComputerChoice () {
+    let randChoice = Math.floor(Math.random() * 3) + 1;
+    switch (randChoice) {
+        case 1: 
+            return "rock";
+        case 2: 
+            return "paper";
+        case 3:
+            return "scissors";
+    }
+}
+
+rockChoice.addEventListener("click", () => {
+    playerSelection = "rock";
+    rockChoice.classList.add("clicked");
+    paperChoice.classList.remove("clicked");
+    scissorsChoice.classList.remove("clicked");
+    confirmChoice.style.pointerEvents = "all";
+});
+paperChoice.addEventListener("click", () => {
+    playerSelection = "paper";
+    rockChoice.classList.remove("clicked");
+    paperChoice.classList.add("clicked");
+    scissorsChoice.classList.remove("clicked");
+    confirmChoice.style.pointerEvents = "all";
+});
+scissorsChoice.addEventListener("click", () => {
+    playerSelection = "scissors";
+    rockChoice.classList.remove("clicked");
+    paperChoice.classList.remove("clicked");
+    scissorsChoice.classList.add("clicked");
+    confirmChoice.style.pointerEvents = "all";
+});
+confirmChoice.addEventListener("click", () => {
+    computerSelection = getComputerChoice();
+    playRound(playerSelection, computerSelection);
+});
+
+function playRound (playerSelection, computerSelection) {
+    if (roundsPlayed == 9) {
+        announceResults += `Your score is ${scorePlayer}. The computer's score is ${scoreComputer}`;
         
-        //Will play five rounds of the game.
-        function game () {
-            for (let i=1; i<=5; i++) {
-                function playRound (computerSelection, playerSelection) {
-                    
-                    if (playerSelection == "rock" && computerSelection == "rock") {
-                        console.log(`You've tied round ${i}!`);
-                        return "You Tie!";
-                    }
-                    else if (playerSelection == "rock" && computerSelection == "scissors") {
-                        console.log(`You've won round ${i}!`);
-                        return "You Win!";
-                    }
-                    else if (playerSelection == "rock" && computerSelection == "paper") {
-                        console.log(`You've lost round ${i}!`);
-                        return "You Lose!";
-                    }
-                    
-                    else if (playerSelection == "paper" && computerSelection == "paper") {
-                        console.log(`You've tied round ${i}!`);
-                        return "You Tie!";
-                    }
-                    else if (playerSelection == "paper" && computerSelection == "rock") {
-                        console.log(`You've won round ${i}!`);
-                        return "You Win!";
-                    }
-                    else if (playerSelection == "paper" && computerSelection == "scissors") {
-                        console.log(`You've lost round ${i}!`);
-                        return "You Lose!";
-                    }
-
-                    else if (playerSelection == "scissors" && computerSelection == "scissors") {
-                        console.log(`You've tied round ${i}!`);
-                        return "You Tie!";
-                    }
-                    else if (playerSelection == "scissors" && computerSelection == "paper") {
-                        console.log(`You've won round ${i}!`);
-                        return "You Win!";
-                    }
-                    else if (playerSelection == "scissors" && computerSelection == "rock") {
-                        console.log(`You've lost round ${i}!`);
-                        return "You Lose!";
-                    }   
-                    else if (playerSelection != "rock" || playerSelection != "paper" || playerSelection != "paper") {
-                        let playerSelection = prompt("Sorry, we didn't get that. Please type Rock, Paper, or Scissors").toLowerCase().trim();
-                        playRound(computerSelection, playerSelection);
-                    }
-            }
-            let computerSelection = getComputerChoice();
-            let playerSelection = prompt("Please Choose and then Type Rock, Paper or Scissors").toLowerCase().trim();
-            playRound(computerSelection, playerSelection);
+        if (scoreComputer > scorePlayer) {
+            announceResults += 'n This means the computer won';
+            resultBox.innerHTML = announceResults;
         }
+        else if (scoreComputer < scorePlayer) {
+            announceResults += '\n This means you won';
+            resultBox.innerHTML = announceResults;
+        }
+        else if (scoreComputer == scorePlayer) {
+            announceResults += '\n This means it was a draw';
+            resultBox.innerHTML = announceResults;
+        }
+        return;
+    }
+    
+    else if (playerSelection == "rock" && computerSelection == "rock") {
+        roundsPlayed++;
+        console.log(`You've tied round ${roundsPlayed}!`);
+        
+        return;
+    }
+    else if (playerSelection == "rock" && computerSelection == "scissors") {
+        roundsPlayed++;
+        console.log(`You've won round ${roundsPlayed}!`);
+       
+        scorePlayer++;
+        return;
+    }
+    else if (playerSelection == "rock" && computerSelection == "paper") {
+        roundsPlayed++;
+        console.log(`You've lost round ${roundsPlayed}!`);
+        
+        scoreComputer++;
+        return;
+    }
+    
+    else if (playerSelection == "paper" && computerSelection == "paper") {
+        roundsPlayed++;
+        console.log(`You've tied round ${roundsPlayed}!`);
+        
+        return;
+    }
+    else if (playerSelection == "paper" && computerSelection == "rock") {
+        roundsPlayed++;
+        console.log(`You've won round ${roundsPlayed}!`);
+       
+        scorePlayer++;
+        return;
+    }
+    else if (playerSelection == "paper" && computerSelection == "scissors") {
+        roundsPlayed++;
+        console.log(`You've lost round ${roundsPlayed}!`);
+       
+        scoreComputer++;
+        return;
     }
 
-        game();
+    else if (playerSelection == "scissors" && computerSelection == "scissors") {
+        roundsPlayed++;
+        console.log(`You've tied round ${roundsPlayed}!`);
+        
+        return;
+    }
+    else if (playerSelection == "scissors" && computerSelection == "paper") {
+        roundsPlayed++;
+        console.log(`You've won round ${roundsPlayed}!`);
+        
+        scorePlayer++;
+        return;
+    }
+    else if (playerSelection == "scissors" && computerSelection == "rock") {
+        roundsPlayed++;
+        console.log(`You've lost round ${roundsPlayed}!`);
+        
+        scoreComputer++;
+        return;
+    }   
+    
+}  
     </script>
 </body>
 </html>
