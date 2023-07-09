@@ -67,6 +67,9 @@
 
        #top {
         display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 50px;
        }
 
        #playerPanel {
@@ -76,7 +79,16 @@
 
        #scissors {
         align-self: center;
+        margin-top: 15px;
        }
+
+       #rock {
+        align-self: flex-end;
+       }
+       #paper {
+        align-self: flex-end;
+       }
+
     </style>
 </head>
 <body>
@@ -87,10 +99,10 @@
     <div id="playerPanel">
         <div id="top">
             <button id="rock">Rock</button>
-            <canvas id="canvas1" width="" height=" "></canvas>
+            <canvas id="canvas1" width="100px" height="84px"></canvas>
             <button id="paper">Paper</button>
         </div>
-        <canvas id="canvas2" width="500px" height="250px"></canvas>
+        <canvas id="canvas2" width="500px" height="134"></canvas>
         <button id="scissors">Scissors</button>
     </div>
 
@@ -121,19 +133,55 @@ const confirmChoice = document.getElementById("submit");
 
 const resultBox = document.getElementById("results");
 
-/* const canvas1 = document.getElementById("canvas1");
-const ctx1 = canvas1.getContext("2d");
- */
+ 
 
 function triangle () {
-    let h = 250 - 250 * (Math.sqrt(3)/2)
+    const canvas1 = document.getElementById("canvas1");
+    const ctx1 = canvas1.getContext("2d");
+
+    ctx1.fillStyle = "black";
+    ctx1.strokeStyle = "black";
+
+    ctx1.beginPath()
+    ctx1.moveTo(50, 0);
+    ctx1.lineTo(-75, 217);
+    ctx1.lineTo(175, 217);
+    ctx1.fill();
+
+
+
+    let h = 134 - 134 * (Math.sqrt(3)/2); //The triangle's height 
+    console.log(h);
+
     const canvas2 = document.getElementById("canvas2");
     const ctx2 = canvas2.getContext("2d");
 
+    ctx2.fillStyle = "white";
+    ctx2.strokeStyle = "white";
+    
+    ctx2.lineWidth = 10;
+
     ctx2.beginPath();
-    ctx2.moveTo(125, 250);
-    ctx2.lineTo(375, 250);
-    ctx2.lineTo(250, h);
+    ctx2.moveTo(125, 134);
+    ctx2.lineTo(375, 134);
+    ctx2.lineTo(250, -83);
+    //ctx2.stroke();
+    ctx2.fill();
+
+
+    ctx2.fillStyle = "black";
+    ctx2.beginPath();
+    ctx2.arc(250, 121.5, 12.5, 0, Math.PI * 2, true);
+    ctx2.fill();
+
+    ctx2.fillStyle = "black";
+    ctx2.beginPath();
+    ctx2.arc(210, 12.5, 12.5, 0, Math.PI * 2, true);
+    ctx2.fill();
+
+    ctx2.fillStyle = "black";
+    ctx2.beginPath();
+    ctx2.arc(290, 12.5, 12.5, 0, Math.PI * 2, true);
     ctx2.fill();
 }
 
