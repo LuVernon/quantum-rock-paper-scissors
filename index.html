@@ -20,7 +20,7 @@
             width: 100px;
             height: 50px;
             font-size: 20px;
-            font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            font-family: karmina; 
             font-weight: bold;
             border: none;
             background-color: rgba(255, 0, 0, 0);
@@ -43,7 +43,7 @@
             align-items: center;
             justify-content: center;
             color: white;
-            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            font-family: karmina; 
             font-size: 25px;
             background-color: rgb(52, 93, 102);
             width: 500px;
@@ -132,12 +132,10 @@ const choices = [rockChoice, paperChoice, scissorsChoice];
 const confirmChoice = document.getElementById("submit");
 
 const resultBox = document.getElementById("results");
-
- 
-
-function triangle () {
+    
     const canvas1 = document.getElementById("canvas1");
     const ctx1 = canvas1.getContext("2d");
+    let raf; 
 
     ctx1.fillStyle = "black";
     ctx1.strokeStyle = "black";
@@ -150,25 +148,69 @@ function triangle () {
 
 
 
-    let h = 134 - 134 * (Math.sqrt(3)/2); //The triangle's height 
+    let h = 217 //134 - 134 * (Math.sqrt(3)/2); //The triangle's height 
     console.log(h);
 
     const canvas2 = document.getElementById("canvas2");
     const ctx2 = canvas2.getContext("2d");
 
+    const ball = {
+        x: 250,
+        y: 67,
+        vx: 20, 
+        vy: 8,
+        radius: 25, 
+        color: "white",
+        draw() {
+            ctx2.beginPath();
+            ctx2.arc(this.x, this.y, this.radius, 0, Math.PI * 2, true);
+            ctx2.closePath();
+            ctx2.fillStyle = this.color;
+            ctx2.fill();
+        },
+
+    };
+
+
+    
     ctx2.fillStyle = "white";
     ctx2.strokeStyle = "white";
     
     ctx2.lineWidth = 10;
 
+
+    function triangle () {
     ctx2.beginPath();
     ctx2.moveTo(125, 134);
     ctx2.lineTo(375, 134);
     ctx2.lineTo(250, -83);
-    //ctx2.stroke();
-    ctx2.fill();
+    ctx2.closePath();
+    ctx2.stroke();
+    }
+
+    function draw() {
+        ctx2.clearRect(0, 0, canvas2.width, canvas2.height);
+        ball.draw();
+        triangle();
+        ball.x += ball.vx;
+        ball.y += ball.vy;
+
+        if (ball.y + ball.vy > canvas2.height || ball.y + ball.vy < 0) {
+            ball.vy = -ball.vy;
+        }
+        if (ball.x + ball.vx > canvas2.width || ball.x + ball.vx < 0) {
+            ball.vx = -ball.vx; 
+        }
+        
+        
+        raf = window.requestAnimationFrame(draw);
 
 
+    }
+
+    //ctx2.fill();
+
+/* 
     ctx2.fillStyle = "black";
     ctx2.beginPath();
     ctx2.arc(250, 121.5, 12.5, 0, Math.PI * 2, true);
@@ -183,9 +225,17 @@ function triangle () {
     ctx2.beginPath();
     ctx2.arc(290, 12.5, 12.5, 0, Math.PI * 2, true);
     ctx2.fill();
-}
+ */
 
-triangle();
+    triangle();
+    ball.draw();
+    
+    canvas2.addEventListener("mouseover", ()=> {
+        raf = window.requestAnimationFrame(draw);
+    });
+
+
+
 
 let announceResults = ``;
 
