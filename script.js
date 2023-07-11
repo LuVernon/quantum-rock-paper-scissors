@@ -11,93 +11,151 @@ let scorePlayer = 0;
 let scoreComputer = 0;
 let playerSelection = "";
 let computerSelection = "";
+let announceResults = ``;
 
 const rockChoice = document.getElementById("rock");
 const paperChoice = document.getElementById("paper");
 const scissorsChoice = document.getElementById("scissors");
 const choices = [rockChoice, paperChoice, scissorsChoice];
-
 const confirmChoice = document.getElementById("submit");
-
 const resultBox = document.getElementById("results");
 
-const canvas1 = document.getElementById("canvas1");
-const ctx1 = canvas1.getContext("2d");
+let pointCount = 0;
+
+ const canvas = document.getElementById("canvas");
+const ctx = canvas.getContext("2d");
 let raf; 
 
-ctx1.fillStyle = "blue";
-ctx1.strokeStyle = "white";
-ctx1.lineWidth = 5;
-
-ctx1.beginPath()
-ctx1.moveTo(50, 0);
-ctx1.lineTo(-75, 217);
-ctx1.lineTo(175, 217);
-ctx1.closePath();
-ctx1.fill();
-ctx1.stroke();
 
 
 
 let h = 217 //134 - 134 * (Math.sqrt(3)/2); //The triangle's height 
-console.log(h);
 
-const canvas2 = document.getElementById("canvas2");
-const ctx2 = canvas2.getContext("2d");
 
-const ball = {
-    x: 178+12.5,
-    y: 108.5+12.5,
-    vx: 7, 
-    vy: 6.75,
-    radius: 12.5, 
-    color: "yellow",
-    draw() {
-        ctx2.beginPath();
-        ctx2.arc(this.x, this.y, this.radius, 0, Math.PI * 2, true);
-        ctx2.closePath();
-        ctx2.fillStyle = this.color;
-        ctx2.fill();
-    },
 
-};
-
-ctx2.fillStyle = "blue";
-ctx2.strokeStyle = "white";
-ctx2.lineWidth = 5;
 
 function triangle () {
-    ctx2.fillStyle = "blue";
-    ctx2.strokeStyle = "white";
+    ctx.fillStyle = "hsl(128, 36%, 62%)";
+    ctx.strokeStyle = "white";
+    ctx.lineWidth = 6;
 
-    ctx2.beginPath();
-    ctx2.moveTo(125, 134);
-    ctx2.lineTo(375, 134);
-    ctx2.lineTo(250, -83);
-    ctx2.closePath();
-    ctx2.fill();
-    ctx2.stroke();
+    ctx.beginPath();
+    ctx.moveTo(125, 223);
+    ctx.lineTo(375, 223);
+    ctx.lineTo(250, 6);
+    ctx.closePath();
+    
+    ctx.stroke();
+
+    ctx.beginPath();
+    ctx.moveTo(250, 6);
+    ctx.lineTo(250, 223/3*2);
+    ctx.lineTo(125, 223);
+    ctx.lineTo(375, 223);
+    ctx.closePath();
+    
+    ctx.fill()
+
+    
+    ctx.beginPath();
+    ctx.moveTo(250, 6);
+    ctx.lineTo(250, 223/3*2);
+    ctx.lineTo(125, 223);
+    ctx.fillStyle = "hsl(229, 36%, 62%)";
+    ctx.closePath();
+    ctx.fill();
+    ctx.stroke
+
+    ctx.beginPath();
+    ctx.moveTo(250, 6);
+    ctx.lineTo(250, 223/3*2);
+    ctx.lineTo(375, 223);
+    ctx.fillStyle = "hsl(357, 36%, 62%)";
+    ctx.closePath();
+    ctx.fill();
 }
+
+
 
 function draw() {
-    ctx2.clearRect(0, 0, canvas2.width, canvas2.height);
-    triangle();
-    ball.draw();
-    ball.x += ball.vx;
-    ball.y += ball.vy;
-    if (ball.y + ball.vy + 12.5 > canvas2.height || ball.y + ball.vy - 12.5 < 26) {
-        ball.vy = -ball.vy;
-    }
-    else if (ball.x + ball.vx + 12.5 > 322 || ball.x + ball.vx - 12.5 < 178) {
-        ball.vx = -ball.vx; 
-    }
-    raf = window.requestAnimationFrame(draw);
-}
-
-raf = window.requestAnimationFrame(draw);
     
 
-let announceResults = ``;
+
+    triangle();
+
+
+
+
+    
+    //window.requestAnimationFrame(draw);
+}
+
+let redArea = {
+    x: 250,
+    y: 223/3*2,
+    vy: 15,
+    vx: 15,
+draw() {
+    
+    ctx.beginPath();
+    ctx.moveTo(this.x, this.y);
+    ctx.lineTo(250, 6);
+    ctx.lineTo(375, 223);
+    ctx.fillStyle = "hsl(357, 36%, 62%)";
+    ctx.closePath();
+    ctx.fill();
+
+}
+}
+
+ 
+function paperRed () {
+   
+
+    redArea.draw();
+    redArea.y += 5.6;
+    redArea.x -= 9.4;
+    if (redArea.y > 223 && redArea.x < 125) {
+        redArea.x = 125;
+        redArea.y = 223;
+    } 
+    window.requestAnimationFrame(paperRed);
+}
+
+let greenArea = {
+    x: 250,
+    y: 223/3*2,
+    vy: 15,
+draw() {
+    
+    ctx.beginPath();
+    ctx.moveTo(250, this.y);
+    ctx.lineTo(375, 223);
+    ctx.lineTo(125, 223);
+    ctx.fillStyle = "hsl(128, 36%, 62%)";
+    ctx.closePath();
+    ctx.fill();
+
+}
+}
+
+
+function scissorsGreen () {
+   
+
+greenArea.draw();
+greenArea.y -= greenArea.vy;
+if (greenArea.y < 6) {
+    greenArea.vy = 0;
+    greenArea.y = 6;
+}
+
+window.requestAnimationFrame(scissorsGreen);
+}
+
+    window.requestAnimationFrame(draw);
+ 
+
 
 // Generate the opponent's choice. 
 function getComputerChoice () {
@@ -120,6 +178,10 @@ scissorsChoice.classList.remove("clicked");
 confirmChoice.style.pointerEvents = "all";
 });
 paperChoice.addEventListener("click", () => {
+
+paperRed();
+
+
 playerSelection = "paper";
 rockChoice.classList.remove("clicked");
 paperChoice.classList.add("clicked");
@@ -127,6 +189,11 @@ scissorsChoice.classList.remove("clicked");
 confirmChoice.style.pointerEvents = "all";
 });
 scissorsChoice.addEventListener("click", () => {
+
+
+scissorsGreen();
+
+
 playerSelection = "scissors";
 rockChoice.classList.remove("clicked");
 paperChoice.classList.remove("clicked");
@@ -139,69 +206,131 @@ playRound(playerSelection, computerSelection);
 });
 
 function playRound (playerSelection, computerSelection) {
-    if (playerSelection == "rock" && computerSelection == "rock") {
+    
+  if (playerSelection == "rock" && computerSelection == "rock") {
         roundsPlayed++;
         console.log(`You've tied round ${roundsPlayed}!`);
+        displayScore();
+
         checkEnd();
+        checkEntang();
         return;
     }
     else if (playerSelection == "rock" && computerSelection == "scissors") {
         roundsPlayed++;
         console.log(`You've won round ${roundsPlayed}!`);
         scorePlayer++;
+        displayScore();
+
         checkEnd();
-    return;
+        checkEntang();
+        return;
     }
     else if (playerSelection == "rock" && computerSelection == "paper") {
         roundsPlayed++;
         console.log(`You've lost round ${roundsPlayed}!`);
-        
+        pointCount++;
         scoreComputer++;
+        displayScore();
+
         checkEnd();
+        checkEntang();
         return;
     }
 
     else if (playerSelection == "paper" && computerSelection == "paper") {
         roundsPlayed++;
         console.log(`You've tied round ${roundsPlayed}!`);
+        displayScore();
+
         checkEnd();
+        checkEntang();
         return;
     }
     else if (playerSelection == "paper" && computerSelection == "rock") {
         roundsPlayed++;
         console.log(`You've won round ${roundsPlayed}!`);
         scorePlayer++;
+        displayScore();
+
         checkEnd();
+        checkEntang();
         return;
     }
     else if (playerSelection == "paper" && computerSelection == "scissors") {
         roundsPlayed++;
         console.log(`You've lost round ${roundsPlayed}!`);
         scoreComputer++;
+        pointCount++;
+        displayScore();
+
         checkEnd();
+        checkEntang();
         return;
     }
     else if (playerSelection == "scissors" && computerSelection == "scissors") {
         roundsPlayed++;
         console.log(`You've tied round ${roundsPlayed}!`);
+        displayScore();
+
         checkEnd();
+        checkEntang();
         return;
     }
     else if (playerSelection == "scissors" && computerSelection == "paper") {
         roundsPlayed++;
         console.log(`You've won round ${roundsPlayed}!`);
         scorePlayer++;
+        displayScore();
+
         checkEnd();
+        checkEntang();
         return;
     }
     else if (playerSelection == "scissors" && computerSelection == "rock") {
         roundsPlayed++;
         console.log(`You've lost round ${roundsPlayed}!`);
+        pointCount++;
         scoreComputer++;
+        displayScore();
         checkEnd();
+        checkEntang();
         return;
     }   
 }  
+
+function checkEntang () {
+    if (pointCount == 2) {
+        if (playerSelection == "rock") {
+            computerSelection = "scissors";
+            roundsPlayed++;
+            scorePlayer++;
+            console.log(computerSelection, playerSelection, `You've won round ${roundsPlayed}!`);
+            displayScore();
+            pointCount = 0;
+        }
+        else if (playerSelection == "paper") {
+            computerSelection = "rock";
+            roundsPlayed++;
+            scorePlayer++;
+            console.log(computerSelection, playerSelection, `You've won round ${roundsPlayed}!`);
+            displayScore();
+            pointCount = 0;
+        }
+        else if (playerSelection == "scissors") {
+            computerSelection = "paper"
+            roundsPlayed++;
+            scorePlayer++;
+            console.log(computerSelection, playerSelection, `You've won round ${roundsPlayed}!`);
+            displayScore();
+            pointCount = 0; 
+        }
+    }
+}
+
+function displayScore () {
+    resultBox.innerHTML = scorePlayer + " / " + scoreComputer;
+}
 
 function checkEnd () {
     if (roundsPlayed == 10) {

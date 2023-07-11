@@ -1,5 +1,5 @@
 html {
-    background-color: rgb(33, 35, 44);
+    background-color: hsl(229, 25%, 22%);
 }
 
 body {
@@ -9,11 +9,11 @@ body {
 }
 
 button {
-    color: rgb(72, 78, 106);
+    color: hsl(229, 36%, 62%);
     width: 100px;
     height: 50px;
     font-size: 30px;
-    font-family: karmina; 
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; 
     font-weight: bold;
     border: none;
     background-color: rgba(255, 0, 0, 0);
@@ -38,7 +38,7 @@ button:hover {
     color: white;
     font-family: karmina; 
     font-size: 25px;
-    background-color: rgb(52, 93, 102);
+    background-color: hsl(190, 31%, 58%);
     width: 500px;
     height: 100px;
     border-radius: 25px;
@@ -80,4 +80,14 @@ align-self: flex-end;
 }
 #paper {
 align-self: flex-end;
+}
+
+.triInfo {
+    align-self: center;
+    margin-top: 10px;
+    color: hsl(229, 36%, 62%);
+    font-size: 15px;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; 
+    font-weight: bold;
+
 }
