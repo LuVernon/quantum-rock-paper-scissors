@@ -21,18 +21,8 @@ const confirmChoice = document.getElementById("submit");
 const resultBox = document.getElementById("results");
 
 let pointCount = 0;
-
- const canvas = document.getElementById("canvas");
+const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
-let raf; 
-
-
-
-
-let h = 217 //134 - 134 * (Math.sqrt(3)/2); //The triangle's height 
-
-
-
 
 function triangle () {
     ctx.fillStyle = "hsl(128, 36%, 62%)";
@@ -44,7 +34,6 @@ function triangle () {
     ctx.lineTo(375, 223);
     ctx.lineTo(250, 6);
     ctx.closePath();
-    
     ctx.stroke();
 
     ctx.beginPath();
@@ -53,10 +42,8 @@ function triangle () {
     ctx.lineTo(125, 223);
     ctx.lineTo(375, 223);
     ctx.closePath();
-    
     ctx.fill()
 
-    
     ctx.beginPath();
     ctx.moveTo(250, 6);
     ctx.lineTo(250, 223/3*2);
@@ -76,42 +63,62 @@ function triangle () {
 }
 
 
-
-function draw() {
-    
-
-
-    triangle();
-
-
-
-
-    
-    //window.requestAnimationFrame(draw);
+let blueArea = {
+    x: 250,
+    y: 223/3*2,
+    draw() {
+        ctx.beginPath();
+        ctx.moveTo(this.x, this.y);
+        ctx.lineTo(250, 6);
+        ctx.lineTo(125, 223);
+        ctx.fillStyle = "hsl(229, 36%, 62%)";
+        ctx.closePath();
+        ctx.fill();
+    }
 }
 
 let redArea = {
     x: 250,
     y: 223/3*2,
+    draw() {
+        ctx.beginPath();
+        ctx.moveTo(this.x, this.y);
+        ctx.lineTo(250, 6);
+        ctx.lineTo(375, 223);
+        ctx.fillStyle = "hsl(357, 36%, 62%)";
+        ctx.closePath();
+        ctx.fill();
+    }
+}
+
+let greenArea = {
+    x: 250,
+    y: 223/3*2,
     vy: 15,
-    vx: 15,
-draw() {
-    
-    ctx.beginPath();
-    ctx.moveTo(this.x, this.y);
-    ctx.lineTo(250, 6);
-    ctx.lineTo(375, 223);
-    ctx.fillStyle = "hsl(357, 36%, 62%)";
-    ctx.closePath();
-    ctx.fill();
+    draw() {
+        ctx.beginPath();
+        ctx.moveTo(250, this.y);
+        ctx.lineTo(375, 223);
+        ctx.lineTo(125, 223);
+        ctx.fillStyle = "hsl(128, 36%, 62%)";
+        ctx.closePath();
+        ctx.fill();
 
-}
+    }
 }
 
- 
+function rockBlue () {
+    blueArea.draw();
+    blueArea.y += 5.6;
+    blueArea.x += 9.4;
+    if (blueArea.y > 223 && blueArea.x > 375) {
+        blueArea.x = 375;
+        blueArea.y = 223;
+    } 
+    window.requestAnimationFrame(rockBlue);  
+}
+
 function paperRed () {
-   
-
     redArea.draw();
     redArea.y += 5.6;
     redArea.x -= 9.4;
@@ -122,38 +129,17 @@ function paperRed () {
     window.requestAnimationFrame(paperRed);
 }
 
-let greenArea = {
-    x: 250,
-    y: 223/3*2,
-    vy: 15,
-draw() {
-    
-    ctx.beginPath();
-    ctx.moveTo(250, this.y);
-    ctx.lineTo(375, 223);
-    ctx.lineTo(125, 223);
-    ctx.fillStyle = "hsl(128, 36%, 62%)";
-    ctx.closePath();
-    ctx.fill();
-
-}
-}
-
-
 function scissorsGreen () {
-   
-
-greenArea.draw();
-greenArea.y -= greenArea.vy;
-if (greenArea.y < 6) {
-    greenArea.vy = 0;
-    greenArea.y = 6;
+    greenArea.draw();
+    greenArea.y -= greenArea.vy;
+    if (greenArea.y < 6) {
+        greenArea.vy = 0;
+        greenArea.y = 6;
+    }
+    window.requestAnimationFrame(scissorsGreen);
 }
 
-window.requestAnimationFrame(scissorsGreen);
-}
-
-    window.requestAnimationFrame(draw);
+triangle();
  
 
 
@@ -171,29 +157,25 @@ switch (randChoice) {
 }
 
 rockChoice.addEventListener("click", () => {
+    rockBlue();
 playerSelection = "rock";
 rockChoice.classList.add("clicked");
 paperChoice.classList.remove("clicked");
 scissorsChoice.classList.remove("clicked");
 confirmChoice.style.pointerEvents = "all";
 });
+
 paperChoice.addEventListener("click", () => {
-
-paperRed();
-
-
+    paperRed();
 playerSelection = "paper";
 rockChoice.classList.remove("clicked");
 paperChoice.classList.add("clicked");
 scissorsChoice.classList.remove("clicked");
 confirmChoice.style.pointerEvents = "all";
 });
+
 scissorsChoice.addEventListener("click", () => {
-
-
-scissorsGreen();
-
-
+    scissorsGreen();
 playerSelection = "scissors";
 rockChoice.classList.remove("clicked");
 paperChoice.classList.remove("clicked");
@@ -206,12 +188,11 @@ playRound(playerSelection, computerSelection);
 });
 
 function playRound (playerSelection, computerSelection) {
-    
+
   if (playerSelection == "rock" && computerSelection == "rock") {
         roundsPlayed++;
         console.log(`You've tied round ${roundsPlayed}!`);
         displayScore();
-
         checkEnd();
         checkEntang();
         return;
