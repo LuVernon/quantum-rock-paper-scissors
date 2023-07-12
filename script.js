@@ -34,7 +34,7 @@ function triangle () {
     ctx.lineTo(375, 223);
     ctx.lineTo(250, 6);
     ctx.closePath();
-    ctx.stroke();
+    //ctx.stroke();
 
     ctx.beginPath();
     ctx.moveTo(250, 6);
@@ -61,7 +61,6 @@ function triangle () {
     ctx.closePath();
     ctx.fill();
 }
-
 
 let blueArea = {
     x: 250,
@@ -94,7 +93,7 @@ let redArea = {
 let greenArea = {
     x: 250,
     y: 223/3*2,
-    vy: 15,
+    vy: 10.5,
     draw() {
         ctx.beginPath();
         ctx.moveTo(250, this.y);
@@ -103,7 +102,6 @@ let greenArea = {
         ctx.fillStyle = "hsl(128, 36%, 62%)";
         ctx.closePath();
         ctx.fill();
-
     }
 }
 
@@ -114,8 +112,26 @@ function rockBlue () {
     if (blueArea.y > 223 && blueArea.x > 375) {
         blueArea.x = 375;
         blueArea.y = 223;
+        blueArea.draw();
+        return;
     } 
+    console.log("hi");
+
     window.requestAnimationFrame(rockBlue);  
+}
+
+function rockBlueReverse () {
+    triangle();
+    blueArea.draw();
+    blueArea.y -= 5.6;
+    blueArea.x -= 9.4;
+    if (blueArea.y < 223/3*2 && blueArea.x < 250) {
+        triangle();
+        blueArea.x = 250;
+        blueArea.y = 223/3*2;
+        return;
+    } 
+    window.requestAnimationFrame(rockBlueReverse);  
 }
 
 function paperRed () {
@@ -125,24 +141,54 @@ function paperRed () {
     if (redArea.y > 223 && redArea.x < 125) {
         redArea.x = 125;
         redArea.y = 223;
+        redArea.draw();
+        return;
     } 
+    console.log("hi");
     window.requestAnimationFrame(paperRed);
+}
+
+function paperRedReverse () {
+    triangle();
+    redArea.draw();
+    redArea.y -= 5.6;
+    redArea.x += 9.4;
+    if (redArea.y < 223/3*2 && redArea.x > 250) {
+        triangle();
+        redArea.x = 250;
+        redArea.y = 223/3*2;
+        return;
+    } 
+    window.requestAnimationFrame(paperRedReverse);  
 }
 
 function scissorsGreen () {
     greenArea.draw();
     greenArea.y -= greenArea.vy;
     if (greenArea.y < 6) {
-        greenArea.vy = 0;
         greenArea.y = 6;
+        greenArea.draw();
+        return;
     }
+    console.log("hi");
     window.requestAnimationFrame(scissorsGreen);
+}
+
+function scissorsGreenReverse () {
+    triangle();
+    greenArea.draw();
+    greenArea.y += greenArea.vy;
+    if (greenArea.y > 223/3*2) {
+        triangle();
+        greenArea.x = 250;
+        greenArea.y = 223/3*2;
+        return;
+    } 
+    window.requestAnimationFrame(scissorsGreenReverse);  
 }
 
 triangle();
  
-
-
 // Generate the opponent's choice. 
 function getComputerChoice () {
 let randChoice = Math.floor(Math.random() * 3) + 1;
@@ -157,34 +203,101 @@ switch (randChoice) {
 }
 
 rockChoice.addEventListener("click", () => {
-    rockBlue();
-playerSelection = "rock";
-rockChoice.classList.add("clicked");
-paperChoice.classList.remove("clicked");
-scissorsChoice.classList.remove("clicked");
-confirmChoice.style.pointerEvents = "all";
+    if (playerSelection == "paper") {
+        paperRedReverse();
+        setTimeout(rockBlue, 400);
+        paperChoice.classList.toggle("clicked");
+        playerSelection = "rock";
+        rockChoice.classList.add("clicked");
+    }
+    else if (playerSelection == "scissors") {
+        scissorsGreenReverse();
+        setTimeout(rockBlue, 400);
+        scissorsChoice.classList.toggle("clicked");
+        playerSelection = "rock";
+        rockChoice.classList.add("clicked");
+
+    }
+    else if (playerSelection == "rock") { 
+        rockBlueReverse();
+        playerSelection = "";
+        rockChoice.classList.toggle("clicked");
+    }
+    else {
+        rockBlue();
+        playerSelection = "rock";
+        rockChoice.classList.toggle("clicked");
+        paperChoice.classList.remove("clicked");
+        scissorsChoice.classList.remove("clicked");
+        confirmChoice.style.pointerEvents = "all";
+    }
 });
 
 paperChoice.addEventListener("click", () => {
+    if (playerSelection == "rock") {
+        rockBlueReverse();
+        setTimeout(paperRed, 400);
+        rockChoice.classList.toggle("clicked");
+        playerSelection = "paper";
+        paperChoice.classList.add("clicked");
+    }
+    else if (playerSelection == "scissors") {
+        scissorsGreenReverse();
+        setTimeout(paperRed, 400);
+        scissorsChoice.classList.toggle("clicked");
+        playerSelection = "paper";
+        paperChoice.classList.add("clicked");
+
+    }
+    else if (playerSelection == "paper") {
+        paperRedReverse();
+        playerSelection = "";
+    }
+    else {
     paperRed();
-playerSelection = "paper";
-rockChoice.classList.remove("clicked");
-paperChoice.classList.add("clicked");
-scissorsChoice.classList.remove("clicked");
-confirmChoice.style.pointerEvents = "all";
+        
+    playerSelection = "paper";
+    rockChoice.classList.remove("clicked");
+    paperChoice.classList.toggle("clicked");
+    scissorsChoice.classList.remove("clicked");
+    confirmChoice.style.pointerEvents = "all";
+
+    }
+
 });
 
 scissorsChoice.addEventListener("click", () => {
-    scissorsGreen();
-playerSelection = "scissors";
-rockChoice.classList.remove("clicked");
-paperChoice.classList.remove("clicked");
-scissorsChoice.classList.add("clicked");
-confirmChoice.style.pointerEvents = "all";
+    if (playerSelection == "rock") {
+        rockBlueReverse();
+        setTimeout(scissorsGreen, 400);
+        rockChoice.classList.toggle("clicked");
+        playerSelection = "scissors";
+        scissorsChoice.classList.add("clicked");
+    }
+    else if (playerSelection == "paper") {
+        paperRedReverse();
+        setTimeout(scissorsGreen, 400);
+        paperChoice.classList.toggle("clicked");
+        playerSelection = "scissors";
+        scissorsChoice.classList.add("clicked");
+
+    }
+    else if (playerSelection == "scissors") {
+        scissorsGreenReverse();
+        playerSelection = "";
+    }
+    else {
+        scissorsGreen();
+    playerSelection = "scissors";
+    rockChoice.classList.remove("clicked");
+    paperChoice.classList.remove("clicked");
+    scissorsChoice.classList.toggle("clicked");
+    confirmChoice.style.pointerEvents = "all";
+    }
 });
 confirmChoice.addEventListener("click", () => {
-computerSelection = getComputerChoice();
-playRound(playerSelection, computerSelection);
+    computerSelection = getComputerChoice();
+    playRound(playerSelection, computerSelection);
 });
 
 function playRound (playerSelection, computerSelection) {

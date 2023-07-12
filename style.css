@@ -63,6 +63,7 @@ display: flex;
 align-items: center;
 justify-content: center;
 margin-top: 50px;
+gap: 40px;
 }
 
 #playerPanel {
@@ -72,14 +73,20 @@ flex-direction: column;
 
 #scissors {
 align-self: center;
-margin-top: 15px;
+color: hsl(128, 36%, 62%);
 }
 
 #rock {
 align-self: flex-end;
+color: hsl(229, 36%, 62%);
 }
 #paper {
 align-self: flex-end;
+color: hsl(357, 36%, 62%);
+}
+
+#scissors:hover, #rock:hover, #paper:hover {
+color: white;
 }
 
 .triInfo {
