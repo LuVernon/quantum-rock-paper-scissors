@@ -64,6 +64,7 @@ align-items: center;
 justify-content: center;
 margin-top: 50px;
 gap: 40px;
+margin-bottom: 40px;
 }
 
 #playerPanel {
@@ -73,16 +74,18 @@ flex-direction: column;
 
 #scissors {
 align-self: center;
-color: hsl(128, 36%, 62%);
+color: hsl(128, 70%, 62%);
 }
 
 #rock {
 align-self: flex-end;
-color: hsl(229, 36%, 62%);
+color: hsl(229, 70%, 62%);
 }
 #paper {
 align-self: flex-end;
-color: hsl(357, 36%, 62%);
+/*color: hsl(357, 36%, 62%); */
+color: hsl(357, 70%, 62%);
+
 }
 
 #scissors:hover, #rock:hover, #paper:hover {

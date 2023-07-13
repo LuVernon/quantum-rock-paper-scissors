@@ -25,7 +25,7 @@ const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
 
 function triangle () {
-    ctx.fillStyle = "hsl(128, 36%, 62%)";
+    ctx.fillStyle = "hsl(128, 70%, 62%)";
     ctx.strokeStyle = "white";
     ctx.lineWidth = 6;
 
@@ -34,7 +34,7 @@ function triangle () {
     ctx.lineTo(375, 223);
     ctx.lineTo(250, 6);
     ctx.closePath();
-    //ctx.stroke();
+    ctx.stroke();
 
     ctx.beginPath();
     ctx.moveTo(250, 6);
@@ -48,7 +48,7 @@ function triangle () {
     ctx.moveTo(250, 6);
     ctx.lineTo(250, 223/3*2);
     ctx.lineTo(125, 223);
-    ctx.fillStyle = "hsl(229, 36%, 62%)";
+    ctx.fillStyle = "hsl(229, 70%, 62%)";
     ctx.closePath();
     ctx.fill();
     ctx.stroke
@@ -57,7 +57,7 @@ function triangle () {
     ctx.moveTo(250, 6);
     ctx.lineTo(250, 223/3*2);
     ctx.lineTo(375, 223);
-    ctx.fillStyle = "hsl(357, 36%, 62%)";
+    ctx.fillStyle = "hsl(357, 70%, 62%)";
     ctx.closePath();
     ctx.fill();
 }
@@ -70,7 +70,7 @@ let blueArea = {
         ctx.moveTo(this.x, this.y);
         ctx.lineTo(250, 6);
         ctx.lineTo(125, 223);
-        ctx.fillStyle = "hsl(229, 36%, 62%)";
+        ctx.fillStyle = "hsl(229, 70%, 62%)";
         ctx.closePath();
         ctx.fill();
     }
@@ -84,7 +84,7 @@ let redArea = {
         ctx.moveTo(this.x, this.y);
         ctx.lineTo(250, 6);
         ctx.lineTo(375, 223);
-        ctx.fillStyle = "hsl(357, 36%, 62%)";
+        ctx.fillStyle = "hsl(357, 70%, 62%)";
         ctx.closePath();
         ctx.fill();
     }
@@ -99,7 +99,7 @@ let greenArea = {
         ctx.moveTo(250, this.y);
         ctx.lineTo(375, 223);
         ctx.lineTo(125, 223);
-        ctx.fillStyle = "hsl(128, 36%, 62%)";
+        ctx.fillStyle = "hsl(128, 70%, 62%)";
         ctx.closePath();
         ctx.fill();
     }
