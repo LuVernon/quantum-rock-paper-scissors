@@ -101,3 +101,12 @@ color: white;
     font-weight: bold;
 
 }
+
+#dashboard {
+    display: flex;
+    flex-direction: row;
+}
+
+#spacer {
+    height: 140px;
+}

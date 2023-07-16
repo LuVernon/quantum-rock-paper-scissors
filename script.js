@@ -24,6 +24,49 @@ let pointCount = 0;
 const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
 
+const compCanvas = document.getElementById("computerCanvas");
+const compCtx = compCanvas.getContext("2d");
+
+function compTriangle () {
+    compCtx.fillStyle = "hsl(128, 70%, 62%)";
+    compCtx.strokeStyle = "white";
+    compCtx.lineWidth = 6;
+
+    compCtx.beginPath();
+    compCtx.moveTo(125, 223);
+    compCtx.lineTo(375, 223);
+    compCtx.lineTo(250, 6);
+    compCtx.closePath();
+    compCtx.stroke();
+
+    compCtx.beginPath();
+    compCtx.moveTo(250, 6);
+    compCtx.lineTo(250, 223/3*2);
+    compCtx.lineTo(125, 223);
+    compCtx.lineTo(375, 223);
+    compCtx.closePath();
+    compCtx.fill()
+
+    compCtx.beginPath();
+    compCtx.moveTo(250, 6);
+    compCtx.lineTo(250, 223/3*2);
+    compCtx.lineTo(125, 223);
+    compCtx.fillStyle = "hsl(229, 70%, 62%)";
+    compCtx.closePath();
+    compCtx.fill();
+    compCtx.stroke
+
+    compCtx.beginPath();
+    compCtx.moveTo(250, 6);
+    compCtx.lineTo(250, 223/3*2);
+    compCtx.lineTo(375, 223);
+    compCtx.fillStyle = "hsl(357, 70%, 62%)";
+    compCtx.closePath();
+    compCtx.fill();
+}
+
+compTriangle();
+
 function triangle () {
     ctx.fillStyle = "hsl(128, 70%, 62%)";
     ctx.strokeStyle = "white";

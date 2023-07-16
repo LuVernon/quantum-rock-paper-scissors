@@ -10,14 +10,20 @@
 <div id="content">
     <div id="results"></div>
     <button id="submit">Submit</button>
-    <div id="playerPanel">
-        <div id="top">
-            <button id="rock">Rock</button>
-            <button id="paper">Paper</button>
-            <button id="scissors">Scissors</button>
+    <div id="dashboard">
+        <div id="playerPanel">
+            <div id="top">
+                <button id="rock">Rock</button>
+                <button id="paper">Paper</button>
+                <button id="scissors">Scissors</button>
+            </div>
+            <canvas id="canvas" width="500px" height="226px"></canvas>
+            <div class="triInfo">Player Choice</div>
         </div>
-        <canvas id="canvas" width="500px" height="226px"></canvas>
-        <div class="triInfo">Player Choice</div>
+        <div id="computer">
+            <div id="spacer"></div>
+            <canvas id="computerCanvas" width="500px" height="226px"></canvas>
+        </div>
     </div>
 </div>
 <script src="./script.js"></script>
