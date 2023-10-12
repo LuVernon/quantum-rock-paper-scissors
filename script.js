@@ -24,6 +24,9 @@ const confirmChoice = document.getElementById("submit");
 const resultBox = document.getElementById("results");
 let buttonMenu = document.querySelector("#top");
 
+let compR = document.getElementById("compR"); 
+let compP = document.getElementById("compP"); 
+let compS = document.getElementById("compS"); 
 
 const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
@@ -416,8 +419,6 @@ buttonMenu.addEventListener("click", (event) => {
                 //dont know why i have this below 
                 confirmChoice.style.pointerEvents = "all";
 
-
-                //consistant pattern for below should be: reverse, timeout, toggle, selection, classlist add 
             }
             break;
         case "paper": 
@@ -491,15 +492,19 @@ function playRound (playerSelection, computerSelection) {
         switch (compRecord[compRecord.length-2]) {
             case "rock": 
                 compRockBlueReverse();
+                compR.style.color = "hsl(229, 25%, 22%)";
                 break;
             case "paper":
                 compPaperRedReverse(); 
+                compP.style.color = "hsl(229, 25%, 22%)";
                 break;
             case "scissors":
                 compScissorsGreenReverse();
+                compS.style.color = "hsl(229, 25%, 22%)";
                 break;
         }
         setTimeout(compScissorsGreen, 400);
+        compS.style.color = "hsl(128, 70%, 62%)";
         roundsPlayed++;
         scorePlayer++;
         displayScore();
@@ -511,15 +516,19 @@ function playRound (playerSelection, computerSelection) {
         switch (compRecord[compRecord.length-2]) {
             case "rock": 
                 compRockBlueReverse();
+                compR.style.color = "hsl(229, 25%, 22%)";
                 break;
             case "paper":
                 compPaperRedReverse(); 
+                compP.style.color = "hsl(229, 25%, 22%)";
                 break;
             case "scissors":
                 compScissorsGreenReverse();
+                compS.style.color = "hsl(229, 25%, 22%)";
                 break;
         }
         setTimeout(compPaperRed, 400);
+        compP.style.color = "hsl(357, 70%, 62%)";
         roundsPlayed++;
         console.log(`You've lost round ${roundsPlayed}!`);
         pointCount++;
@@ -533,15 +542,19 @@ function playRound (playerSelection, computerSelection) {
         switch (compRecord[compRecord.length-2]) {
             case "rock": 
                 compRockBlueReverse();
+                compR.style.color = "hsl(229, 25%, 22%)";
                 break;
             case "paper":
                 compPaperRedReverse(); 
+                compP.style.color = "hsl(229, 25%, 22%)";
                 break;
             case "scissors":
                 compScissorsGreenReverse();
+                compS.style.color = "hsl(229, 25%, 22%)";
                 break;
         }
-        setTimeout(compRockBlue, 400);        
+        setTimeout(compRockBlue, 400);   
+        compR.style.color = "hsl(229, 70%, 62%)";     
         roundsPlayed++;
         console.log(`You've won round ${roundsPlayed}!`);
         scorePlayer++;
@@ -554,15 +567,19 @@ function playRound (playerSelection, computerSelection) {
         switch (compRecord[compRecord.length-2]) {
             case "rock": 
                 compRockBlueReverse();
+                compR.style.color = "hsl(229, 25%, 22%)";
                 break;
             case "paper":
                 compPaperRedReverse(); 
+                compP.style.color = "hsl(229, 25%, 22%)";
                 break;
             case "scissors":
                 compScissorsGreenReverse();
+                compS.style.color = "hsl(229, 25%, 22%)";
                 break;
         }
         setTimeout(compScissorsGreen, 400);
+        compS.style.color = "hsl(128, 70%, 62%)";
         roundsPlayed++;
         console.log(`You've lost round ${roundsPlayed}!`);
         scoreComputer++;
@@ -576,15 +593,19 @@ function playRound (playerSelection, computerSelection) {
         switch (compRecord[compRecord.length-2]) {
             case "rock": 
                 compRockBlueReverse();
+                compR.style.color = "hsl(229, 25%, 22%)";
                 break;
             case "paper":
                 compPaperRedReverse(); 
+                compP.style.color = "hsl(229, 25%, 22%)";
                 break;
             case "scissors":
                 compScissorsGreenReverse();
+                compS.style.color = "hsl(229, 25%, 22%)";
                 break;
         }
         setTimeout(compPaperRed, 400);
+        compP.style.color = "hsl(357, 70%, 62%)";
         roundsPlayed++;
         console.log(`You've won round ${roundsPlayed}!`);
         scorePlayer++;
@@ -597,15 +618,19 @@ function playRound (playerSelection, computerSelection) {
         switch (compRecord[compRecord.length-2]) {
             case "rock": 
                 compRockBlueReverse();
+                compR.style.color = "hsl(229, 25%, 22%)";
                 break;
             case "paper":
                 compPaperRedReverse(); 
+                compP.style.color = "hsl(229, 25%, 22%)";
                 break;
             case "scissors":
                 compScissorsGreenReverse();
+                compS.style.color = "hsl(229, 25%, 22%)";
                 break;
         }
         setTimeout(compRockBlue, 400); 
+        compR.style.color = "hsl(229, 70%, 62%)";     
         roundsPlayed++;
         console.log(`You've lost round ${roundsPlayed}!`);
         pointCount++;
@@ -619,23 +644,29 @@ function playRound (playerSelection, computerSelection) {
         switch (compRecord[compRecord.length-2]) {
             case "rock": 
                 compRockBlueReverse();
+                compR.style.color = "hsl(229, 25%, 22%)";
                 break;
             case "paper":
                 compPaperRedReverse(); 
+                compP.style.color = "hsl(229, 25%, 22%)";
                 break;
             case "scissors":
                 compScissorsGreenReverse();
+                compS.style.color = "hsl(229, 25%, 22%)";
                 break;
         }
         switch (playerSelection) {
             case "rock": 
-            setTimeout(compRockBlue, 400); 
+                setTimeout(compRockBlue, 400); 
+                compR.style.color = "hsl(229, 70%, 62%)";     
                 break;
             case "paper": 
-            setTimeout(compPaperRed, 400);
+                setTimeout(compPaperRed, 400);
+                compP.style.color = "hsl(357, 70%, 62%)";
                 break;
             case "scissors": 
-            setTimeout(compScissorsGreen, 400);
+                setTimeout(compScissorsGreen, 400);
+                compS.style.color = "hsl(128, 70%, 62%)";
                 break;
         }
         roundsPlayed++;
