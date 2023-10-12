@@ -394,27 +394,21 @@ buttonMenu.addEventListener("click", (event) => {
             if (playerSelection == "paper") {
                 paperRedReverse();
                 setTimeout(rockBlue, 400);
-                paperChoice.classList.toggle("clicked");
                 playerSelection = "rock";
-                rockChoice.classList.add("clicked");
             }
             else if (playerSelection == "scissors") {
                 scissorsGreenReverse();
                 setTimeout(rockBlue, 400);
-                scissorsChoice.classList.toggle("clicked");
                 playerSelection = "rock";
-                rockChoice.classList.add("clicked");
         
             }
             else if (playerSelection == "rock") { 
                 rockBlueReverse();
                 playerSelection = "";
-                rockChoice.classList.toggle("clicked");
             }
             else {
                 rockBlue();
                 playerSelection = "rock";
-                rockChoice.classList.toggle("clicked");
                 
                 //dont know why i have this below 
                 confirmChoice.style.pointerEvents = "all";
@@ -425,16 +419,12 @@ buttonMenu.addEventListener("click", (event) => {
             if (playerSelection == "rock") {
                 rockBlueReverse();
                 setTimeout(paperRed, 400);
-                rockChoice.classList.toggle("clicked");
                 playerSelection = "paper";
-                paperChoice.classList.add("clicked");
             }
             else if (playerSelection == "scissors") {
                 scissorsGreenReverse();
                 setTimeout(paperRed, 400);
-                scissorsChoice.classList.toggle("clicked");
                 playerSelection = "paper";
-                paperChoice.classList.add("clicked");
         
             }
             else if (playerSelection == "paper") {
@@ -445,7 +435,6 @@ buttonMenu.addEventListener("click", (event) => {
             paperRed();
             playerSelection = "paper";
             
-            paperChoice.classList.toggle("clicked");
             confirmChoice.style.pointerEvents = "all";
             }
             break;
@@ -453,16 +442,12 @@ buttonMenu.addEventListener("click", (event) => {
             if (playerSelection == "rock") {
                 rockBlueReverse();
                 setTimeout(scissorsGreen, 400);
-                rockChoice.classList.toggle("clicked");
                 playerSelection = "scissors";
-                scissorsChoice.classList.add("clicked");
             }
             else if (playerSelection == "paper") {
                 paperRedReverse();
                 setTimeout(scissorsGreen, 400);
-                paperChoice.classList.toggle("clicked");
                 playerSelection = "scissors";
-                scissorsChoice.classList.add("clicked");
         
             }
             else if (playerSelection == "scissors") {
@@ -473,7 +458,6 @@ buttonMenu.addEventListener("click", (event) => {
                 scissorsGreen();
             playerSelection = "scissors";
             
-            scissorsChoice.classList.toggle("clicked");
             confirmChoice.style.pointerEvents = "all";
             }
             break;
@@ -505,6 +489,14 @@ function playRound (playerSelection, computerSelection) {
         }
         setTimeout(compScissorsGreen, 400);
         compS.style.color = "hsl(128, 70%, 62%)";
+
+        scissorsChoice.style.color = "hsl(229, 25%, 22%)";
+        paperChoice.style.color = "hsl(229, 25%, 22%)";
+        setTimeout(()=>{
+            scissorsChoice.style.color = "hsl(128, 70%, 62%)";
+            paperChoice.style.color = "hsl(357, 70%, 62%)";
+        }, 2000);
+
         roundsPlayed++;
         scorePlayer++;
         displayScore();
@@ -529,6 +521,14 @@ function playRound (playerSelection, computerSelection) {
         }
         setTimeout(compPaperRed, 400);
         compP.style.color = "hsl(357, 70%, 62%)";
+
+        scissorsChoice.style.color = "hsl(229, 25%, 22%)";
+        paperChoice.style.color = "hsl(229, 25%, 22%)";
+        setTimeout(()=>{
+            scissorsChoice.style.color = "hsl(128, 70%, 62%)";
+            paperChoice.style.color = "hsl(357, 70%, 62%)";
+        }, 2000);
+
         roundsPlayed++;
         console.log(`You've lost round ${roundsPlayed}!`);
         pointCount++;
@@ -554,7 +554,15 @@ function playRound (playerSelection, computerSelection) {
                 break;
         }
         setTimeout(compRockBlue, 400);   
-        compR.style.color = "hsl(229, 70%, 62%)";     
+        compR.style.color = "hsl(229, 70%, 62%)";   
+        
+        rockChoice.style.color = "hsl(229, 25%, 22%)";
+        scissorsChoice.style.color = "hsl(229, 25%, 22%)";
+        setTimeout(()=>{
+            rockChoice.style.color = "hsl(229, 70%, 62%)";
+            scissorsChoice.style.color = "hsl(128, 70%, 62%)";
+        }, 2000);
+        
         roundsPlayed++;
         console.log(`You've won round ${roundsPlayed}!`);
         scorePlayer++;
@@ -580,6 +588,14 @@ function playRound (playerSelection, computerSelection) {
         }
         setTimeout(compScissorsGreen, 400);
         compS.style.color = "hsl(128, 70%, 62%)";
+
+        rockChoice.style.color = "hsl(229, 25%, 22%)";
+        scissorsChoice.style.color = "hsl(229, 25%, 22%)";
+        setTimeout(()=>{
+            rockChoice.style.color = "hsl(229, 70%, 62%)";
+            scissorsChoice.style.color = "hsl(128, 70%, 62%)";
+        }, 2000);
+
         roundsPlayed++;
         console.log(`You've lost round ${roundsPlayed}!`);
         scoreComputer++;
@@ -606,6 +622,14 @@ function playRound (playerSelection, computerSelection) {
         }
         setTimeout(compPaperRed, 400);
         compP.style.color = "hsl(357, 70%, 62%)";
+
+        rockChoice.style.color = "hsl(229, 25%, 22%)";
+        paperChoice.style.color = "hsl(229, 25%, 22%)";
+        setTimeout(()=>{
+            rockChoice.style.color = "hsl(229, 70%, 62%)";
+            paperChoice.style.color = "hsl(357, 70%, 62%)";
+        }, 2000);
+
         roundsPlayed++;
         console.log(`You've won round ${roundsPlayed}!`);
         scorePlayer++;
@@ -630,7 +654,15 @@ function playRound (playerSelection, computerSelection) {
                 break;
         }
         setTimeout(compRockBlue, 400); 
-        compR.style.color = "hsl(229, 70%, 62%)";     
+        compR.style.color = "hsl(229, 70%, 62%)";    
+        
+        rockChoice.style.color = "hsl(229, 25%, 22%)";
+        paperChoice.style.color = "hsl(229, 25%, 22%)";
+        setTimeout(()=>{
+            rockChoice.style.color = "hsl(229, 70%, 62%)";
+            paperChoice.style.color = "hsl(357, 70%, 62%)";
+        }, 2000);
+        
         roundsPlayed++;
         console.log(`You've lost round ${roundsPlayed}!`);
         pointCount++;
@@ -659,14 +691,32 @@ function playRound (playerSelection, computerSelection) {
             case "rock": 
                 setTimeout(compRockBlue, 400); 
                 compR.style.color = "hsl(229, 70%, 62%)";     
+                scissorsChoice.style.color = "hsl(229, 25%, 22%)";
+                paperChoice.style.color = "hsl(229, 25%, 22%)";
+                setTimeout(()=>{
+                    scissorsChoice.style.color = "hsl(128, 70%, 62%)";
+                    paperChoice.style.color = "hsl(357, 70%, 62%)";
+                }, 2000);
                 break;
             case "paper": 
                 setTimeout(compPaperRed, 400);
                 compP.style.color = "hsl(357, 70%, 62%)";
+                rockChoice.style.color = "hsl(229, 25%, 22%)";
+                scissorsChoice.style.color = "hsl(229, 25%, 22%)";
+                setTimeout(()=>{
+                    rockChoice.style.color = "hsl(229, 70%, 62%)";
+                    scissorsChoice.style.color = "hsl(128, 70%, 62%)";
+                }, 2000);
                 break;
             case "scissors": 
                 setTimeout(compScissorsGreen, 400);
                 compS.style.color = "hsl(128, 70%, 62%)";
+                rockChoice.style.color = "hsl(229, 25%, 22%)";
+                paperChoice.style.color = "hsl(229, 25%, 22%)";
+                setTimeout(()=>{
+                    rockChoice.style.color = "hsl(229, 70%, 62%)";
+                    paperChoice.style.color = "hsl(357, 70%, 62%)";
+                }, 2000);
                 break;
         }
         roundsPlayed++;
@@ -726,22 +776,19 @@ function checkEnd () {
             announceResults += `- ${"This means the computer won"}`;
             resultBox.textContent = announceResults;
             confirmChoice.style.pointerEvents = "none"
-            choices.forEach((item)=>{item.style.pointerEvents = "none";
-            item.classList.remove("clicked")});
+            choices.forEach((item)=>{item.style.pointerEvents = "none"});
         }
         else if (scoreComputer < scorePlayer) {
             announceResults += `- ${"This means you won"}`;
             resultBox.textContent = announceResults;
             confirmChoice.style.pointerEvents = "none"
-            choices.forEach((item)=>{item.style.pointerEvents = "none";
-            item.classList.remove("clicked")});
+            choices.forEach((item)=>{item.style.pointerEvents = "none"});
         }
         else if (scoreComputer == scorePlayer) {
             announceResults += `- ${"This means it was a draw"}`;
             resultBox.textContent = announceResults;
             confirmChoice.style.pointerEvents = "none"
-            choices.forEach((item)=>{item.style.pointerEvents = "none";
-            item.classList.remove("clicked")});
+            choices.forEach((item)=>{item.style.pointerEvents = "none"});
         }
         return;
     }   

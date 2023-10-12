@@ -46,10 +46,6 @@ button:hover {
     user-select: none;
 }
 
-.clicked {
-    color: rgb(255, 255, 255);
-}
-
 #content {
     display: flex;
     flex-direction: column;
