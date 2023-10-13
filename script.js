@@ -16,6 +16,11 @@ let computerSelection = "";
 let compRecord = [];
 let announceResults = ``;
 
+let backGround = "hsl(229, 25%, 22%)";
+let blue = "hsl(229, 70%, 62%)";
+let green = "hsl(128, 70%, 62%)";
+let red = "hsl(357, 70%, 62%)";
+
 const rockChoice = document.getElementById("rock");
 const paperChoice = document.getElementById("paper");
 const scissorsChoice = document.getElementById("scissors");
@@ -35,7 +40,7 @@ const compCanvas = document.getElementById("computerCanvas");
 const compCtx = compCanvas.getContext("2d");
 
 function compTriangle () {
-    compCtx.fillStyle = "hsl(128, 70%, 62%)";
+    compCtx.fillStyle = green;
     compCtx.strokeStyle = "white";
     compCtx.lineWidth = 6;
 
@@ -60,7 +65,7 @@ function compTriangle () {
     compCtx.moveTo(250, 6);
     compCtx.lineTo(250, 223/3*2);
     compCtx.lineTo(125, 223);
-    compCtx.fillStyle = "hsl(229, 70%, 62%)";
+    compCtx.fillStyle = blue;
     compCtx.closePath();
     compCtx.fill();
     compCtx.stroke
@@ -69,7 +74,7 @@ function compTriangle () {
     compCtx.moveTo(250, 6);
     compCtx.lineTo(250, 223/3*2);
     compCtx.lineTo(375, 223);
-    compCtx.fillStyle = "hsl(357, 70%, 62%)";
+    compCtx.fillStyle = red;
     compCtx.closePath();
     compCtx.fill();
 }
@@ -78,7 +83,7 @@ function compTriangle () {
 compTriangle();
 
 function triangle () {
-    ctx.fillStyle = "hsl(128, 70%, 62%)";
+    ctx.fillStyle = green;
     ctx.strokeStyle = "white";
     ctx.lineWidth = 6;
 
@@ -103,7 +108,7 @@ function triangle () {
     ctx.moveTo(250, 6);
     ctx.lineTo(250, 223/3*2);
     ctx.lineTo(125, 223);
-    ctx.fillStyle = "hsl(229, 70%, 62%)";
+    ctx.fillStyle = blue;
     ctx.closePath();
     ctx.fill();
     ctx.stroke
@@ -112,7 +117,7 @@ function triangle () {
     ctx.moveTo(250, 6);
     ctx.lineTo(250, 223/3*2);
     ctx.lineTo(375, 223);
-    ctx.fillStyle = "hsl(357, 70%, 62%)";
+    ctx.fillStyle = red;
     ctx.closePath();
     ctx.fill();
     }
@@ -126,7 +131,7 @@ let compBlueArea = {
         compCtx.moveTo(this.x, this.y);
         compCtx.lineTo(250, 6);
         compCtx.lineTo(125, 223);
-        compCtx.fillStyle = "hsl(229, 70%, 62%)";
+        compCtx.fillStyle = blue;
         compCtx.closePath();
         compCtx.fill();
     }
@@ -140,7 +145,7 @@ let compRedArea = {
         compCtx.moveTo(this.x, this.y);
         compCtx.lineTo(250, 6);
         compCtx.lineTo(375, 223);
-        compCtx.fillStyle = "hsl(357, 70%, 62%)";
+        compCtx.fillStyle = red;
         compCtx.closePath();
         compCtx.fill();
     }
@@ -155,7 +160,7 @@ let compGreenArea = {
         compCtx.moveTo(250, this.y);
         compCtx.lineTo(375, 223);
         compCtx.lineTo(125, 223);
-        compCtx.fillStyle = "hsl(128, 70%, 62%)";
+        compCtx.fillStyle = green;
         compCtx.closePath();
         compCtx.fill();
     }
@@ -169,7 +174,7 @@ let blueArea = {
         ctx.moveTo(this.x, this.y);
         ctx.lineTo(250, 6);
         ctx.lineTo(125, 223);
-        ctx.fillStyle = "hsl(229, 70%, 62%)";
+        ctx.fillStyle = blue;
         ctx.closePath();
         ctx.fill();
     }
@@ -183,7 +188,7 @@ let redArea = {
         ctx.moveTo(this.x, this.y);
         ctx.lineTo(250, 6);
         ctx.lineTo(375, 223);
-        ctx.fillStyle = "hsl(357, 70%, 62%)";
+        ctx.fillStyle = red;
         ctx.closePath();
         ctx.fill();
     }
@@ -198,7 +203,7 @@ let greenArea = {
         ctx.moveTo(250, this.y);
         ctx.lineTo(375, 223);
         ctx.lineTo(125, 223);
-        ctx.fillStyle = "hsl(128, 70%, 62%)";
+        ctx.fillStyle = green;
         ctx.closePath();
         ctx.fill();
     }
@@ -476,25 +481,25 @@ function playRound (playerSelection, computerSelection) {
         switch (compRecord[compRecord.length-2]) {
             case "rock": 
                 compRockBlueReverse();
-                compR.style.color = "hsl(229, 25%, 22%)";
+                compR.style.color = backGround;
                 break;
             case "paper":
                 compPaperRedReverse(); 
-                compP.style.color = "hsl(229, 25%, 22%)";
+                compP.style.color = backGround;
                 break;
             case "scissors":
                 compScissorsGreenReverse();
-                compS.style.color = "hsl(229, 25%, 22%)";
+                compS.style.color = backGround;
                 break;
         }
         setTimeout(compScissorsGreen, 400);
-        compS.style.color = "hsl(128, 70%, 62%)";
+        compS.style.color = green;
 
-        scissorsChoice.style.color = "hsl(229, 25%, 22%)";
-        paperChoice.style.color = "hsl(229, 25%, 22%)";
+        scissorsChoice.style.color = backGround;
+        paperChoice.style.color = backGround;
         setTimeout(()=>{
-            scissorsChoice.style.color = "hsl(128, 70%, 62%)";
-            paperChoice.style.color = "hsl(357, 70%, 62%)";
+            scissorsChoice.style.color = green;
+            paperChoice.style.color = red;
         }, 2000);
 
         roundsPlayed++;
@@ -508,25 +513,25 @@ function playRound (playerSelection, computerSelection) {
         switch (compRecord[compRecord.length-2]) {
             case "rock": 
                 compRockBlueReverse();
-                compR.style.color = "hsl(229, 25%, 22%)";
+                compR.style.color = backGround;
                 break;
             case "paper":
                 compPaperRedReverse(); 
-                compP.style.color = "hsl(229, 25%, 22%)";
+                compP.style.color = backGround;
                 break;
             case "scissors":
                 compScissorsGreenReverse();
-                compS.style.color = "hsl(229, 25%, 22%)";
+                compS.style.color = backGround;
                 break;
         }
         setTimeout(compPaperRed, 400);
-        compP.style.color = "hsl(357, 70%, 62%)";
+        compP.style.color = red;
 
-        scissorsChoice.style.color = "hsl(229, 25%, 22%)";
-        paperChoice.style.color = "hsl(229, 25%, 22%)";
+        scissorsChoice.style.color = backGround;
+        paperChoice.style.color = backGround;
         setTimeout(()=>{
-            scissorsChoice.style.color = "hsl(128, 70%, 62%)";
-            paperChoice.style.color = "hsl(357, 70%, 62%)";
+            scissorsChoice.style.color = green;
+            paperChoice.style.color = red;
         }, 2000);
 
         roundsPlayed++;
@@ -542,25 +547,25 @@ function playRound (playerSelection, computerSelection) {
         switch (compRecord[compRecord.length-2]) {
             case "rock": 
                 compRockBlueReverse();
-                compR.style.color = "hsl(229, 25%, 22%)";
+                compR.style.color = backGround;
                 break;
             case "paper":
                 compPaperRedReverse(); 
-                compP.style.color = "hsl(229, 25%, 22%)";
+                compP.style.color = backGround;
                 break;
             case "scissors":
                 compScissorsGreenReverse();
-                compS.style.color = "hsl(229, 25%, 22%)";
+                compS.style.color = backGround;
                 break;
         }
         setTimeout(compRockBlue, 400);   
-        compR.style.color = "hsl(229, 70%, 62%)";   
+        compR.style.color = blue;   
         
-        rockChoice.style.color = "hsl(229, 25%, 22%)";
-        scissorsChoice.style.color = "hsl(229, 25%, 22%)";
+        rockChoice.style.color = backGround;
+        scissorsChoice.style.color = backGround;
         setTimeout(()=>{
-            rockChoice.style.color = "hsl(229, 70%, 62%)";
-            scissorsChoice.style.color = "hsl(128, 70%, 62%)";
+            rockChoice.style.color = blue;
+            scissorsChoice.style.color = green;
         }, 2000);
         
         roundsPlayed++;
@@ -575,25 +580,25 @@ function playRound (playerSelection, computerSelection) {
         switch (compRecord[compRecord.length-2]) {
             case "rock": 
                 compRockBlueReverse();
-                compR.style.color = "hsl(229, 25%, 22%)";
+                compR.style.color = backGround;
                 break;
             case "paper":
                 compPaperRedReverse(); 
-                compP.style.color = "hsl(229, 25%, 22%)";
+                compP.style.color = backGround;
                 break;
             case "scissors":
                 compScissorsGreenReverse();
-                compS.style.color = "hsl(229, 25%, 22%)";
+                compS.style.color = backGround;
                 break;
         }
         setTimeout(compScissorsGreen, 400);
-        compS.style.color = "hsl(128, 70%, 62%)";
+        compS.style.color = green;
 
-        rockChoice.style.color = "hsl(229, 25%, 22%)";
-        scissorsChoice.style.color = "hsl(229, 25%, 22%)";
+        rockChoice.style.color = backGround;
+        scissorsChoice.style.color = backGround;
         setTimeout(()=>{
-            rockChoice.style.color = "hsl(229, 70%, 62%)";
-            scissorsChoice.style.color = "hsl(128, 70%, 62%)";
+            rockChoice.style.color = blue;
+            scissorsChoice.style.color = green;
         }, 2000);
 
         roundsPlayed++;
@@ -609,25 +614,25 @@ function playRound (playerSelection, computerSelection) {
         switch (compRecord[compRecord.length-2]) {
             case "rock": 
                 compRockBlueReverse();
-                compR.style.color = "hsl(229, 25%, 22%)";
+                compR.style.color = backGround;
                 break;
             case "paper":
                 compPaperRedReverse(); 
-                compP.style.color = "hsl(229, 25%, 22%)";
+                compP.style.color = backGround;
                 break;
             case "scissors":
                 compScissorsGreenReverse();
-                compS.style.color = "hsl(229, 25%, 22%)";
+                compS.style.color = backGround;
                 break;
         }
         setTimeout(compPaperRed, 400);
-        compP.style.color = "hsl(357, 70%, 62%)";
+        compP.style.color = red;
 
-        rockChoice.style.color = "hsl(229, 25%, 22%)";
-        paperChoice.style.color = "hsl(229, 25%, 22%)";
+        rockChoice.style.color = backGround;
+        paperChoice.style.color = backGround;
         setTimeout(()=>{
-            rockChoice.style.color = "hsl(229, 70%, 62%)";
-            paperChoice.style.color = "hsl(357, 70%, 62%)";
+            rockChoice.style.color = blue;
+            paperChoice.style.color = red;
         }, 2000);
 
         roundsPlayed++;
@@ -642,25 +647,25 @@ function playRound (playerSelection, computerSelection) {
         switch (compRecord[compRecord.length-2]) {
             case "rock": 
                 compRockBlueReverse();
-                compR.style.color = "hsl(229, 25%, 22%)";
+                compR.style.color = backGround;
                 break;
             case "paper":
                 compPaperRedReverse(); 
-                compP.style.color = "hsl(229, 25%, 22%)";
+                compP.style.color = backGround;
                 break;
             case "scissors":
                 compScissorsGreenReverse();
-                compS.style.color = "hsl(229, 25%, 22%)";
+                compS.style.color = backGround;
                 break;
         }
         setTimeout(compRockBlue, 400); 
-        compR.style.color = "hsl(229, 70%, 62%)";    
+        compR.style.color = blue;    
         
-        rockChoice.style.color = "hsl(229, 25%, 22%)";
-        paperChoice.style.color = "hsl(229, 25%, 22%)";
+        rockChoice.style.color = backGround;
+        paperChoice.style.color = backGround;
         setTimeout(()=>{
-            rockChoice.style.color = "hsl(229, 70%, 62%)";
-            paperChoice.style.color = "hsl(357, 70%, 62%)";
+            rockChoice.style.color = blue;
+            paperChoice.style.color = red;
         }, 2000);
         
         roundsPlayed++;
@@ -676,46 +681,46 @@ function playRound (playerSelection, computerSelection) {
         switch (compRecord[compRecord.length-2]) {
             case "rock": 
                 compRockBlueReverse();
-                compR.style.color = "hsl(229, 25%, 22%)";
+                compR.style.color = backGround;
                 break;
             case "paper":
                 compPaperRedReverse(); 
-                compP.style.color = "hsl(229, 25%, 22%)";
+                compP.style.color = backGround;
                 break;
             case "scissors":
                 compScissorsGreenReverse();
-                compS.style.color = "hsl(229, 25%, 22%)";
+                compS.style.color = backGround;
                 break;
         }
         switch (playerSelection) {
             case "rock": 
                 setTimeout(compRockBlue, 400); 
-                compR.style.color = "hsl(229, 70%, 62%)";     
-                scissorsChoice.style.color = "hsl(229, 25%, 22%)";
-                paperChoice.style.color = "hsl(229, 25%, 22%)";
+                compR.style.color = blue;     
+                scissorsChoice.style.color = backGround;
+                paperChoice.style.color = backGround;
                 setTimeout(()=>{
-                    scissorsChoice.style.color = "hsl(128, 70%, 62%)";
-                    paperChoice.style.color = "hsl(357, 70%, 62%)";
+                    scissorsChoice.style.color = green;
+                    paperChoice.style.color = red;
                 }, 2000);
                 break;
             case "paper": 
                 setTimeout(compPaperRed, 400);
-                compP.style.color = "hsl(357, 70%, 62%)";
-                rockChoice.style.color = "hsl(229, 25%, 22%)";
-                scissorsChoice.style.color = "hsl(229, 25%, 22%)";
+                compP.style.color = red;
+                rockChoice.style.color = backGround;
+                scissorsChoice.style.color = backGround;
                 setTimeout(()=>{
-                    rockChoice.style.color = "hsl(229, 70%, 62%)";
-                    scissorsChoice.style.color = "hsl(128, 70%, 62%)";
+                    rockChoice.style.color = blue;
+                    scissorsChoice.style.color = green;
                 }, 2000);
                 break;
             case "scissors": 
                 setTimeout(compScissorsGreen, 400);
-                compS.style.color = "hsl(128, 70%, 62%)";
-                rockChoice.style.color = "hsl(229, 25%, 22%)";
-                paperChoice.style.color = "hsl(229, 25%, 22%)";
+                compS.style.color = green;
+                rockChoice.style.color = backGround;
+                paperChoice.style.color = backGround;
                 setTimeout(()=>{
-                    rockChoice.style.color = "hsl(229, 70%, 62%)";
-                    paperChoice.style.color = "hsl(357, 70%, 62%)";
+                    rockChoice.style.color = blue;
+                    paperChoice.style.color = red;
                 }, 2000);
                 break;
         }
