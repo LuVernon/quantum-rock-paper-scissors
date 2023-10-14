@@ -40,6 +40,9 @@ const ctx = canvas.getContext("2d");
 const compCanvas = document.getElementById("computerCanvas");
 const compCtx = compCanvas.getContext("2d");
 
+const scoreCanvas = document.querySelector("#scoreBoard");
+const scoreCtx = scoreCanvas.getContext("2d"); 
+
 function compTriangle () {
     compCtx.fillStyle = green;
     compCtx.strokeStyle = "white";
@@ -505,6 +508,8 @@ function playRound (playerSelection, computerSelection) {
             paperChoice.style.color = red;
         }, 2000);
 
+        drawScore("player");
+
         roundsPlayed++;
         scorePlayer++;
         displayScore();
@@ -536,6 +541,8 @@ function playRound (playerSelection, computerSelection) {
             scissorsChoice.style.color = green;
             paperChoice.style.color = red;
         }, 2000);
+
+        drawScore("computer");
 
         roundsPlayed++;
         console.log(`You've lost round ${roundsPlayed}!`);
@@ -570,6 +577,8 @@ function playRound (playerSelection, computerSelection) {
             rockChoice.style.color = blue;
             scissorsChoice.style.color = green;
         }, 2000);
+
+        drawScore("player");
         
         roundsPlayed++;
         console.log(`You've won round ${roundsPlayed}!`);
@@ -603,6 +612,8 @@ function playRound (playerSelection, computerSelection) {
             rockChoice.style.color = blue;
             scissorsChoice.style.color = green;
         }, 2000);
+
+        drawScore("computer");
 
         roundsPlayed++;
         console.log(`You've lost round ${roundsPlayed}!`);
@@ -638,6 +649,8 @@ function playRound (playerSelection, computerSelection) {
             paperChoice.style.color = red;
         }, 2000);
 
+        drawScore("player");
+
         roundsPlayed++;
         console.log(`You've won round ${roundsPlayed}!`);
         scorePlayer++;
@@ -670,7 +683,9 @@ function playRound (playerSelection, computerSelection) {
             rockChoice.style.color = blue;
             paperChoice.style.color = red;
         }, 2000);
-        
+
+        drawScore("computer");
+
         roundsPlayed++;
         console.log(`You've lost round ${roundsPlayed}!`);
         pointCount++;
@@ -727,6 +742,10 @@ function playRound (playerSelection, computerSelection) {
                 }, 2000);
                 break;
         }
+
+        drawScore("player");
+        drawScore("computer");
+
         roundsPlayed++;
         console.log(`You've tied round ${roundsPlayed}!`);
         displayScore();
@@ -742,6 +761,7 @@ function checkEntang () {
 //for a computerSelection assignment 
 
     if (pointCount == 2 && roundsPlayed != 10) {
+        drawScore("player");
         if (playerSelection == "rock") {
             computerSelection = "scissors";
             roundsPlayed++;
@@ -802,4 +822,27 @@ function checkEnd () {
         }
         return;
     }   
+}
+
+let pStart = 140; 
+let cStart = 140; 
+function drawScore (winner) {
+    scoreCtx.strokeStyle = yellow; 
+    scoreCtx.fillStyle = yellow; 
+    switch (winner) {
+        case "player":
+            scoreCtx.beginPath();
+            scoreCtx.arc(5, pStart, 5, 0, 2*Math.PI);
+            scoreCtx.fill();
+            scoreCtx.closePath();
+            pStart += 15;
+            break;
+        case "computer": 
+            scoreCtx.beginPath();
+            scoreCtx.arc(20, cStart, 5, 0, 2*Math.PI);
+            scoreCtx.fill();
+            scoreCtx.closePath();
+            cStart += 15;
+            break;
+    }
 }
