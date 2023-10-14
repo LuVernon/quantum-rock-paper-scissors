@@ -20,6 +20,7 @@ let backGround = "hsl(229, 25%, 22%)";
 let blue = "hsl(229, 70%, 62%)";
 let green = "hsl(128, 70%, 62%)";
 let red = "hsl(357, 70%, 62%)";
+let yellow = "rgb(255, 255, 0)"
 
 const rockChoice = document.getElementById("rock");
 const paperChoice = document.getElementById("paper");
@@ -469,12 +470,14 @@ buttonMenu.addEventListener("click", (event) => {
     }
 });
 
-confirmChoice.addEventListener("click", () => {
+function submitButton () {
     confirmChoice.style.pointerEvents = "none";
     setTimeout(() => {confirmChoice.style.pointerEvents = "all"}, 1500);
     computerSelection = getComputerChoice();
     playRound(playerSelection, computerSelection);
-});
+}
+
+confirmChoice.addEventListener("click", submitButton);
 
 function playRound (playerSelection, computerSelection) {
     if (playerSelection == "rock" && computerSelection == "scissors") {
@@ -774,7 +777,9 @@ function displayScore () {
 }
 
 function checkEnd () {
-    if (roundsPlayed == 10) {
+    if (roundsPlayed >= 10) {
+        confirmChoice.removeEventListener("click", submitButton);
+
         announceResults += `Your score is ${scorePlayer}. The computer's score is ${scoreComputer}. \r\n`;
     
         if (scoreComputer > scorePlayer) {
