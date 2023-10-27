@@ -16,7 +16,7 @@ let computerSelection = "";
 let compRecord = [];
 let announceResults = ``;
 
-let backGround = "hsl(229, 25%, 22%)";
+let backGround = "hsl(230, 20%, 30%)";
 let blue = "hsl(229, 70%, 62%)";
 let green = "hsl(128, 70%, 62%)";
 let red = "hsl(357, 70%, 62%)";
