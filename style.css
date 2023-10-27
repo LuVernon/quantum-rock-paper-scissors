@@ -99,6 +99,8 @@ button:hover {
 #dashboard {
     display: flex;
     flex-direction: row;
+    background-color: hsl(230, 20%, 30%);
+    border-radius: 20px;
 }
 
 #spacer {
@@ -113,15 +115,15 @@ button:hover {
 
 #compR {
     pointer-events: none;
-    color: hsl(229, 25%, 22%);
+    color: hsl(230, 20%, 30%);
 }
 
 #compP {
     pointer-events: none;
-    color: hsl(229, 25%, 22%);
+    color: hsl(230, 20%, 30%);
 }
 
 #compS {
     pointer-events: none;
-    color: hsl(229, 25%, 22%);
+    color: hsl(230, 20%, 30%);
 }
